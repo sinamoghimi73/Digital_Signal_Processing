@@ -1,7 +1,8 @@
 #include "dsp.h"
-#include <memory>
 
-float DSP::average(const std::shared_ptr<std::vector<float>> &array, int size) {
+namespace DSP {
+float Statistics::average(const std::shared_ptr<std::vector<float>> &array,
+                          int size) {
   if (array == nullptr || size == 0)
     throw "Invalid parameters!";
 
@@ -11,9 +12,9 @@ float DSP::average(const std::shared_ptr<std::vector<float>> &array, int size) {
   };
   return (sum / size);
 }
-// /////////////////////////////////////////////////////////////////////////////
-float DSP::variance(const std::shared_ptr<std::vector<float>> &array,
-                    int size) {
+
+float Statistics::variance(const std::shared_ptr<std::vector<float>> &array,
+                           int size) {
   if (array == nullptr || size == 0)
     throw std::runtime_error("Invalid parameters!");
 
@@ -26,4 +27,5 @@ float DSP::variance(const std::shared_ptr<std::vector<float>> &array,
   float avg{sum / size};
   return ((sum2 - sum * avg) / (size - 1));
 }
-// /////////////////////////////////////////////////////////////////////////////
+
+} // namespace DSP
